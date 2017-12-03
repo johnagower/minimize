@@ -6,5 +6,9 @@
 {% block content %}
 	<h1>Simplify your life</h1>
 	<p>Take stock of what you have</p>
-	<p>{{name}} has {{ number }} things</p>
+	<p>You have {{ number }} thing{{ number|pluralize }}</p>
+	{% for thing in things %}
+	<h2>{{ thing.name }}</h2>
+	<p>{{ thing.description }}</p>
+	{% endfor %}
 {% endblock content %}
