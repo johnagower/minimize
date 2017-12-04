@@ -9,3 +9,9 @@ def index(request):
 		'number': number,
 		'things': things
 	})
+
+def thing_detail(request, slug):
+	thing = Thing.objects.get(slug=slug)
+	return render (request, 'things/thing_detail.html', {
+		'thing': thing,
+	})
