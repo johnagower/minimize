@@ -23,7 +23,7 @@ from django.contrib.auth.views import (
 	password_change,
 	password_change_done,
 )
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, RedirectView
 from inventory import views
 from inventory.backends import MyRegistrationView
 
@@ -35,16 +35,32 @@ urlpatterns = [
     url(r'^contact/$',
     	TemplateView.as_view(template_name='contact.html'),
     	name='contact'),
+
+    # things
+    url(r'^things/$', RedirectView.as_view(
+    	pattern_name='browse', permanent=True)),
     url(r'^things/(?P<slug>[-\w]+)/$', views.thing_detail,
     	name='thing_detail'),
     url(r'^things/(?P<slug>[-\w]+)/edit/$',
     	views.edit_thing, name='edit_thing'),
+
+    #browse
+    url(r'^browse/$', RedirectView.as_view(
+    	pattern_name='browse', permanent=True)),
+    url(r'^browse/name/$',
+    	views.browse_by_name, name='browse'),
+    url(r'^browse/name/(?P<initial>[-\w]+)/$',
+    	views.browse_by_name, name='browse_by_name'),
+
+    #user registration
     url(r'^accounts/register/$', MyRegistrationView.as_view(),
     	name='registration_register'),
     url(r'^accounts/create_thing/$',
     	views.create_thing,
     	name='registration_create_thing'),
     url(r'^accounts/', include('registration.backends.simple.urls')),
+    
+    #password reset
     url(r'^accounts/password/reset/$', password_reset,
     	{'template_name': 'registration/password_reset_form.html'},
     	name="password_reset"),
@@ -60,6 +76,8 @@ urlpatterns = [
     	password_reset_complete,
     	{'template_name': 'registration/password_reset_complete.html'},
     	name="password_reset_complete"),
+
+    #password change
     url(r'^accounts/password/change/$',
     	password_change,
     	{'template_name': 'registration/password_change_form.html'},
@@ -68,5 +86,7 @@ urlpatterns = [
     	password_change_done,
     	{'template_name': 'registration/password_change_done.html'},
     	name="password_change_done"),
+
+    #admin
     url(r'^admin/', admin.site.urls),
 ]
