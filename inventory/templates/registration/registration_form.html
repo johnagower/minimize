@@ -3,17 +3,26 @@
 	Registration Form - {{ block.super }}
 {% endblock title %}
 {% block content %}
-	<h1>Registration Form</h1>
-	<form role="form" action="" method="post">
-		{% csrf_token %}
-		{{ form.as_p }}
-		<input type="submit" value="Submit" />
-	</form>
-	<ul>
-		<li>
-			<a href="{% url 'auth_login' %}">
-				Login
-			</a>
-		</li>
-	</ul>
+	{% if user.is_authenticated %}
+	<p>You're already registered</p>
+	<p>
+		<a href="{% url 'home' %}">
+			Home
+		</a>
+	</p>
+	{% else %}
+		<h1>Register</h1>
+		<form role="form" action="" method="post">
+			{% csrf_token %}
+			{{ form.as_p }}
+			<input type="submit" value="Submit" />
+		</form>
+		<ul>
+			<li>
+				<a href="{% url 'auth_login' %}">
+					Login
+				</a>
+			</li>
+		</ul>
+	{% endif %}
 {% endblock content %}
