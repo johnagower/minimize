@@ -5,12 +5,19 @@
 
 {% block content %}
 	<h1>Simplify your life</h1>
-	<p>Take stock of what you have</p>
-	<p>You have {{ number }} thing{{ number|pluralize }}</p>
+	<div class="homepage-subtitle">
+		<p>Take stock of what you have</p>
+		<p>You have {{ number }} thing{{ number|pluralize }}</p>
+	</div>
+	<ul class="things-list">
 	{% for thing in things %}
-		<h2><a href="{% url 'thing_detail' slug=thing.slug %}">
-			{{ thing.name }}
-		</a></h2>
-		<p>{{ thing.description }}</p>
+		<a href="{% url 'thing_detail' slug=thing.slug %}">
+			<li class="things-list-item">
+					<div class="thing-name">
+						{{ thing.name }}
+					</div>
+			</li>
+		</a>
 	{% endfor %}
+	</ul>
 {% endblock content %}

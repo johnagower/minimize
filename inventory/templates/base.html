@@ -8,28 +8,31 @@
 		{% endblock title %}
 	</title>
 	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 	{% block header %}{% endblock header %}
 </head>
 <body>
 	<header>
 		<nav>
-			<ul>
-				<li><a href="{% url 'home' %}">Home</a></li>
-				<li><a href="{% url 'about' %}">About</a></li>
-				<li><a href="{% url 'contact' %}">Contact</a></li>
-				<li><a href="{% url 'browse' %}">Browse</a></li>
+			<ul class="nav-menu">
+				<li class="nav-menu-item">
+					<a href="{% url 'home' %}">Home</a>
+				</li>
+				<li class="nav-menu-item">
+					<a href="{% url 'browse' %}">My Stuff</a>
+				</li>
 				{% if user.is_authenticated %}
-				<li>
+				<li class="nav-menu-item">
 					<a href="{% url 'auth_logout' %}">Logout</a>
 				</li>
-				<li>
+				<li class="nav-menu-item">
 					<a href="{% url 'password_change' %}">Change password</a>
 				</li>
 				{% else %}
-				<li>
+				<li class="nav-menu-item">
 					<a href="{% url 'auth_login' %}">Login</a>
 				</li>
-				<li>
+				<li class="nav-menu-item">
 					<a href="{% url 'registration_register' %}">Register</a>
 				</li>
 				{% endif %}
@@ -38,5 +41,11 @@
 	</header>
 	{% block content %}{% endblock content %}
 	{% block footer %}{% endblock footer %}
+	<footer>
+		<ul>
+			<li><a href="{% url 'about' %}">About</a></li>
+			<li><a href="{% url 'contact' %}">Contact</a></li>
+		</ul>
+	</footer>
 </body>
 </html>
