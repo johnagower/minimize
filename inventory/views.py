@@ -16,6 +16,8 @@ def index(request):
 
 def thing_detail(request, slug):
 	thing = Thing.objects.get(slug=slug)
+	if thing.user != request.user:
+		raise Http404
 	return render (request, 'things/thing_detail.html', {
 		'thing': thing,
 	})
@@ -48,7 +50,7 @@ def create_thing(request):
 			thing.user = request.user
 			thing.slug = slugify(thing.name)
 			thing.save()
-			return redirect('thing_detail', slug=thing.slug)
+			return redirect('home')
 	else:
 		form = form_class()
 	return render(request, 'things/create_thing.html', {

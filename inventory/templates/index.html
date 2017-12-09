@@ -8,16 +8,21 @@
 	<div class="homepage-subtitle">
 		<p>Take stock of what you have</p>
 		<p>You have {{ number }} thing{{ number|pluralize }}</p>
+		<p>
+			<a href="{% url 'registration_create_thing' %}">Add something</a>
+		</p>
 	</div>
 	<ul class="things-list">
 	{% for thing in things %}
-		<a href="{% url 'thing_detail' slug=thing.slug %}">
-			<li class="things-list-item">
+		{% if user == thing.user %}
+			<a href="{% url 'thing_detail' slug=thing.slug %}">
+				<li class="things-list-item">
 					<div class="thing-name">
 						{{ thing.name }}
 					</div>
-			</li>
-		</a>
+				</li>
+			</a>
+		{% endif %}	
 	{% endfor %}
 	</ul>
 {% endblock content %}
