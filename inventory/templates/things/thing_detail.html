@@ -5,6 +5,9 @@
 
 {% block content %}
 	<h1>{{ thing.name }}</h1>
+	{% if thing.active == False %}
+		<p class="inactive-warning">This thing is inactive</p>
+	{% endif %}
 	<p>{{ thing.description }}</p>
 	{% if user == thing.user %}
 		<p>

@@ -7,8 +7,8 @@ from inventory.models import Thing
 
 # Create your views here.
 def index(request):
-	number = Thing.objects.count()
-	things = Thing.objects.all()
+	number = Thing.objects.filter(user__exact=request.user).count()
+	things = Thing.objects.filter(user__exact=request.user)
 	return render (request, 'index.html', {
 		'number': number,
 		'things': things

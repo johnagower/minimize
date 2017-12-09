@@ -12,9 +12,10 @@
 			<a href="{% url 'registration_create_thing' %}">Add something</a>
 		</p>
 	</div>
+	<h2>Your active things</h2>
 	<ul class="things-list">
 	{% for thing in things %}
-		{% if user == thing.user %}
+		{% if thing.active == True %}
 			<a href="{% url 'thing_detail' slug=thing.slug %}">
 				<li class="things-list-item">
 					<div class="thing-name">
@@ -22,7 +23,21 @@
 					</div>
 				</li>
 			</a>
-		{% endif %}	
+		{% endif %}
+	{% endfor %}
+	</ul>
+	<h2>Your inactive things</h2>
+	<ul class="things-list">
+	{% for thing in things %}
+		{% if thing.active == False %}
+			<a href="{% url 'thing_detail' slug=thing.slug %}">
+				<li class="things-list-item">
+					<div class="thing-name">
+						{{ thing.name }}
+					</div>
+				</li>
+			</a>
+		{% endif %}
 	{% endfor %}
 	</ul>
 {% endblock content %}

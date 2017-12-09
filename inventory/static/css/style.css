@@ -1,7 +1,6 @@
 
 body {
 	font-family: 'Raleway', sans-serif;
-
 }
 
 ul.nav-menu {
@@ -31,6 +30,10 @@ h1 {
 .homepage-subtitle {
 	text-align: center;
 	font-size: 2rem;
+}
+
+p.inactive-warning {
+	color: red;
 }
 
 footer {
