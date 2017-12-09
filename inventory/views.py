@@ -16,7 +16,7 @@ def index(request):
 
 def thing_detail(request, slug):
 	thing = Thing.objects.get(slug=slug)
-	if thing.user != request.user:
+	if (not request.user.is_superuser and thing.user != request.user):
 		raise Http404
 	return render (request, 'things/thing_detail.html', {
 		'thing': thing,

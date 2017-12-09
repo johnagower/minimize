@@ -7,3 +7,4 @@ class Thing(models.Model):
 	description = models.TextField()
 	slug = models.SlugField(unique=True)
 	user = models.ForeignKey(User, blank=True, null=True)
+	active = models.BooleanField(default=True)
