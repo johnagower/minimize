@@ -7,13 +7,9 @@ from inventory.models import Thing
 
 # Create your views here.
 def index(request):
-	number = Thing.objects.filter(user__exact=request.user).count()
-	things = Thing.objects.filter(user__exact=request.user)
-	return render (request, 'index.html', {
-		'number': number,
-		'things': things
-	})
+	return render (request, 'index.html',)
 
+@login_required
 def thing_detail(request, slug):
 	thing = Thing.objects.get(slug=slug)
 	if (not request.user.is_superuser and thing.user != request.user):
@@ -57,12 +53,14 @@ def create_thing(request):
 		'form': form,
 	})
 
+@login_required
 def browse_by_name(request, initial=None):
+	number = Thing.objects.filter(user__exact=request.user).count()
 	if initial:
-		things = Thing.objects.filter(
+		things = Thing.objects.filter(user__exact=request.user).filter(
 			name__istartswith=initial).order_by('name')
 	else:
-		things = Thing.objects.all().order_by('name')
+		things = Thing.objects.filter(user__exact=request.user).order_by('name')
 	return render(request, 'search/search.html', {
 		'things': things,
 		'initial': initial

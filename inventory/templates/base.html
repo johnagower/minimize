@@ -18,10 +18,10 @@
 				<li class="nav-menu-item">
 					<a href="{% url 'home' %}">Home</a>
 				</li>
+				{% if user.is_authenticated %}
 				<li class="nav-menu-item">
 					<a href="{% url 'browse' %}">My Stuff</a>
 				</li>
-				{% if user.is_authenticated %}
 				<li class="nav-menu-item">
 					<a href="{% url 'auth_logout' %}">Logout</a>
 				</li>

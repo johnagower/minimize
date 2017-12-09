@@ -13,13 +13,64 @@
 		{{ letter|upper }}
 	</a>
 	{% endfor %}
-	<ul>
-		{% for thing in things %}
-		<li><a href="{% url 'thing_detail' slug=thing.slug %}">
-			{{ thing.name }}
-		</a></li>
-		{% empty %}
-		<li>Sorry, no results!</li>
-		{% endfor %}
-	</ul>
+	<h2>Your active things</h2>
+<ul class="things-list">
+{% for thing in things %}
+	{% if thing.active == True %}
+		<a href="{% url 'thing_detail' slug=thing.slug %}">
+			<li class="things-list-item">
+				<div class="thing-name">
+					{{ thing.name }}
+				</div>
+			</li>
+		</a>
+	{% endif %}
+{% empty %}
+	<li>No active things</li>
+{% endfor %}
+</ul>
+<h2>Your inactive things</h2>
+<ul class="things-list">
+{% for thing in things %}
+	{% if thing.active == False %}
+		<a href="{% url 'thing_detail' slug=thing.slug %}">
+			<li class="things-list-item">
+				<div class="thing-name">
+					{{ thing.name }}
+				</div>
+			</li>
+		</a>
+	{% endif %}
+{% endfor %}
+</ul>
 {% endblock content %}
+
+
+<h2>Your active things</h2>
+<ul class="things-list">
+{% for thing in things %}
+	{% if thing.active == True %}
+		<a href="{% url 'thing_detail' slug=thing.slug %}">
+			<li class="things-list-item">
+				<div class="thing-name">
+					{{ thing.name }}
+				</div>
+			</li>
+		</a>
+	{% endif %}
+{% endfor %}
+</ul>
+<h2>Your inactive things</h2>
+<ul class="things-list">
+{% for thing in things %}
+	{% if thing.active == False %}
+		<a href="{% url 'thing_detail' slug=thing.slug %}">
+			<li class="things-list-item">
+				<div class="thing-name">
+					{{ thing.name }}
+				</div>
+			</li>
+		</a>
+	{% endif %}
+{% endfor %}
+</ul>
