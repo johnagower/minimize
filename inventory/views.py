@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.template.defaultfilters import slugify
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
-from inventory.forms import ThingForm
+from inventory.forms import ThingFormEdit, ThingFormCreate
 from inventory.models import Thing
 
 # Create your views here.
@@ -23,7 +23,7 @@ def edit_thing(request, slug):
 	thing = Thing.objects.get(slug=slug)
 	if thing.user != request.user:
 		raise Http404
-	form_class = ThingForm
+	form_class = ThingFormEdit
 	if request.method == 'POST':
 		form = form_class(data=request.POST, instance=thing)
 		if form.is_valid():
@@ -37,8 +37,9 @@ def edit_thing(request, slug):
 		'form': form,
 	})
 
+@login_required
 def create_thing(request):
-	form_class = ThingForm
+	form_class = ThingFormCreate
 	if request.method == 'POST':
 		form = form_class(request.POST)
 		if form.is_valid():

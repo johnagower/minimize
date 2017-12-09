@@ -9,9 +9,16 @@
 		{{ form.as_p }}
 		<input type="submit" value="Submit" />
 	</form>
-	<p>
-		<a href="{% url 'password_reset' %}">
-			Forgot your password?
-		</a>
+	<ul>
+		<li>
+			<a href="{% url 'registration_register' %}">
+				Register
+			</a>
+		</li>
+		<li> 
+			<a href="{% url 'password_reset' %}">
+				Forgot your password?
+			</a>
+		</li>
 	</p>
 {% endblock content %}
