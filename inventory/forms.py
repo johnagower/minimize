@@ -12,7 +12,7 @@ class ThingFormCreate(ModelForm):
 		model = Thing
 		fields = ('name', 'description',)
 
-class ContactForm(forms.Form)
+class ContactForm(forms.Form):
 	contact_name = forms.CharField()
 	contact_email = forms.EmailField()
 	content = forms.CharField(widget=forms.Textarea)
