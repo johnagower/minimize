@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.template.defaultfilters import slugify
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
-from inventory.forms import ThingFormEdit, ThingFormCreate
+from inventory.forms import ThingFormEdit, ThingFormCreate, ContactForm
 from inventory.models import Thing
 
 # Create your views here.
@@ -65,4 +65,10 @@ def browse_by_name(request, initial=None):
 	return render(request, 'search/search.html', {
 		'things': things,
 		'initial': initial
+	})
+
+def contact(request):
+	form_class = ContactForm
+	return render(request, 'contact.html', {
+		'form': form_class
 	})

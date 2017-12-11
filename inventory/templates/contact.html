@@ -5,5 +5,9 @@
 
 {% block content %}
 	<h1>Contact us</h1>
-	<p>Email</p>
+	<form role="form" action="" method=post>
+		{% csrf_token %}
+		{{ form.as_p }}
+		<button type="submit">Submit</button>
+	</form>
 {% endblock content %}
