@@ -9,6 +9,15 @@
 		<p class="inactive-warning">This thing is inactive</p>
 	{% endif %}
 	<p>{{ thing.description }}</p>
+	{% if tags %}
+	<ul>
+		{% for tag in tags %}
+			<li>
+				{{ tag.tag}}
+			</li>
+		{% endfor %}
+	</ul>
+	{% endif %}
 	{% if user == thing.user %}
 		<p>
 			<a href="{% url 'edit_thing' slug=thing.slug %}">
