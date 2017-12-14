@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.contrib.sitemaps.views import sitemap
 from django.contrib.auth.views import (
 	password_reset,
 	password_reset_done,
@@ -26,6 +27,16 @@ from django.contrib.auth.views import (
 from django.views.generic import TemplateView, RedirectView
 from inventory import views
 from inventory.backends import MyRegistrationView
+from inventory.sitemap import (
+	BlogSitemap,
+	StaticSitemap,
+	HomepageSitemap,	
+)
+sitemaps = {
+	'articles': BlogSitemap,
+	'static': StaticSitemap,
+	'homepage': HomepageSitemap,
+}
 
 urlpatterns = [
     url(r'^$', views.index, name='home'),
@@ -49,6 +60,12 @@ urlpatterns = [
     	views.browse_by_name, name='browse'),
     url(r'^browse/name/(?P<initial>[-\w]+)/$',
     	views.browse_by_name, name='browse_by_name'),
+
+    # articles
+    url(r'^articles/$', views.articles_home,
+    	name='articles'),
+    url(r'^articles/(?P<slug>[-\w]+)/$', views.blog_article,
+    	name='blog_article'),
 
     #user registration
     url(r'^accounts/register/$', MyRegistrationView.as_view(),
@@ -84,6 +101,10 @@ urlpatterns = [
     	password_change_done,
     	{'template_name': 'registration/password_change_done.html'},
     	name="password_change_done"),
+
+    # sitemap
+    url(r'^sitemap.xml$', sitemap, {'sitemaps': sitemaps}, 
+    	name='django.contrib.sitemaps.views.sitemap'),
 
     #admin
     url(r'^admin/', admin.site.urls),

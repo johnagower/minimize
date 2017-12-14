@@ -7,6 +7,7 @@
 			Minimize
 		{% endblock title %}
 	</title>
+	<meta name="description" content="{% block description %}Minimize{% endblock description %}">
 	<link rel="stylesheet" href="{% static 'css/style.css' %}">
 	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 	{% block header %}{% endblock header %}
@@ -17,6 +18,9 @@
 			<ul class="nav-menu">
 				<li class="nav-menu-item">
 					<a href="{% url 'home' %}">Home</a>
+				</li>
+				<li class="nav-menu-item">
+					<a href="{% url 'articles' %}">Articles</a>
 				</li>
 				{% if user.is_authenticated %}
 				<li class="nav-menu-item">

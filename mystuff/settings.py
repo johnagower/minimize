@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+    'django.contrib.sitemaps',
     'registration',
 ]
 
@@ -130,10 +131,19 @@ STATIC_FILES_DIRS = (
 ACCOUNT_ACTIVATION_DAYS = 7
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-DEFAULT_FROM_EMAIL = 'testing.example.com'
+DEFAULT_FROM_EMAIL = 'support@minimizeapp.com'
 EMAIL_HOST_USER = ''
 EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_TLS = False
 EMAIL_PORT = 1025
+
+# the email address the "server emails" will come from
+SERVER_EMAIL = 'support@minimizeapp.com'
+
+# the email(s) that will receive admin emails
+ADMINS = [
+	('John Gower', 'johnagower@gmail.com'),
+]
+
 
 LOGIN_REDIRECT_URL = "home"

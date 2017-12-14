@@ -2,23 +2,42 @@ from django.shortcuts import render, redirect
 from django.template.defaultfilters import slugify
 from django.template.loader import get_template
 from django.template import Context
-from django.core.mail import EmailMessage
+from django.core.mail import EmailMessage, mail_admins
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from inventory.forms import ThingFormEdit, ThingFormCreate, ContactForm
-from inventory.models import Thing
+from inventory.models import Thing, BlogArticle
 
 # Create your views here.
 def index(request):
 	return render (request, 'index.html',)
 
+def blog_article(request, slug):
+	# grab article
+	article = BlogArticle.objects.get(slug=slug)
+	# pass to template
+	return render (request, 'articles/single_article.html', {
+		'article': article,
+	})
+
+def articles_home(request):
+	articles = BlogArticle.objects.all().order_by('title')
+	return render (request, 'articles/articles.html', {
+		'articles': articles,
+	})
+
 @login_required
 def thing_detail(request, slug):
+	# grab object
 	thing = Thing.objects.get(slug=slug)
+	# grab tags
+	tags = thing.tags.all()
 	if (not request.user.is_superuser and thing.user != request.user):
 		raise Http404
+	# pass to template
 	return render (request, 'things/thing_detail.html', {
 		'thing': thing,
+		'tags': tags,
 	})
 
 @login_required
@@ -51,6 +70,7 @@ def create_thing(request):
 			thing.slug = slugify(thing.name)
 			thing.save()
 			return redirect('home')
+			mail_admins("New thing added", "Someone added a new thing")
 	else:
 		form = form_class()
 	return render(request, 'things/create_thing.html', {
