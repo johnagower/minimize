@@ -8,7 +8,7 @@ class Timestamp(models.Model):
 
 	class Meta:
 		abstract = True
-		
+
 class Thing(Timestamp):
 	def __unicode__(self):
 		return self.name
@@ -18,6 +18,10 @@ class Thing(Timestamp):
 	slug = models.SlugField(unique=True)
 	user = models.ForeignKey(User, blank=True, null=True)
 	active = models.BooleanField(default=True)
+
+	# helper method
+	def get_absolute_url(self):
+		return "things/%s/" % self.slug
 
 class ThingTag(models.Model):
 	TAG_OPTIONS = (
@@ -35,3 +39,13 @@ class ThingTag(models.Model):
 	# override the admin name
 	class Meta:
 		verbose_name_plural = "Tags"
+
+class BlogArticle(Timestamp):
+	title = models.CharField(max_length=60, blank=False, null=False)
+	description = models.CharField(max_length=160)
+	content = models.TextField()
+	slug = models.SlugField(unique=True)
+
+	# helper method
+	def get_absolute_url(self):
+		return "articles/%s/" % self.slug
