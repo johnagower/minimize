@@ -2,7 +2,14 @@ from __future__ import unicode_literals
 from django.db import models
 from django.contrib.auth.models import User
 
-class Thing(models.Model):
+class Timestamp(models.Model):
+	created = models.DateTimeField(auto_now_add=True)
+	updated = models.DateTimeField(auto_now=True)
+
+	class Meta:
+		abstract = True
+		
+class Thing(Timestamp):
 	def __unicode__(self):
 		return self.name
 
