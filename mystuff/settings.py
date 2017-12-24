@@ -128,6 +128,10 @@ STATIC_FILES_DIRS = (
 	os.path.join(BASE_DIR, 'static'),
 )
 
+# Store uploaded images
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
 ACCOUNT_ACTIVATION_DAYS = 7
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
