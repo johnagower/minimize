@@ -49,3 +49,11 @@ class BlogArticle(Timestamp):
 	# helper method
 	def get_absolute_url(self):
 		return "articles/%s/" % self.slug
+
+# image model
+def get_image_path(instance, filename):
+	return '/' .join(['thing_images', instance.thing.slug, filename])
+
+class Upload(Timestamp):
+	thing = models.ForeignKey(Thing, related_name="uploads")
+	image = models.ImageField(upload_to=get_image_path)
