@@ -93,3 +93,8 @@ li.things-list-item:hover {
 	margin: 20px 10px 20px 10px;
 	font-size: 1.2rem;
 }
+
+img.thing-img {
+	max-width: 250px;
+	height: auto;
+}

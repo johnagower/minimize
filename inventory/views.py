@@ -32,12 +32,16 @@ def thing_detail(request, slug):
 	thing = Thing.objects.get(slug=slug)
 	# grab tags
 	tags = thing.tags.all()
+	# grab associated images
+	uploads = thing.uploads.all()
+
 	if (not request.user.is_superuser and thing.user != request.user):
 		raise Http404
 	# pass to template
 	return render (request, 'things/thing_detail.html', {
 		'thing': thing,
 		'tags': tags,
+		'uploads': uploads,
 	})
 
 @login_required
