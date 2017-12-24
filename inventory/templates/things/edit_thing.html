@@ -9,4 +9,13 @@
 		{{ form.as_p }}
 		<button type="submit">Submit</button>
 	</form>
+	<h2>Uploaded images</h2>
+	<p>
+		<a href="{% url 'edit_thing_uploads' slug=thing.slug %}">
+			Edit images
+		</a>
+	</p>
+	{% for upload in uploads %}
+	<img class="thing-img" src="{{ upload.image.url }}" alt="" />
+	{% endfor %}
 {% endblock %}

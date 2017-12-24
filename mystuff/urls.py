@@ -53,6 +53,10 @@ urlpatterns = [
     	name='thing_detail'),
     url(r'^things/(?P<slug>[-\w]+)/edit/$',
     	views.edit_thing, name='edit_thing'),
+    url(r'^things/(?P<slug>[-\w]+)/edit/images/$',
+        views.edit_thing_uploads, name='edit_thing_uploads'),
+    url(r'^delete/(?P<id>[-\w]+)/$', 
+        views.delete_upload, name='delete_upload'),
 
     #browse
     url(r'^browse/$', RedirectView.as_view(

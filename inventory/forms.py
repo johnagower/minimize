@@ -1,11 +1,16 @@
 from django import forms
 from django.forms import ModelForm
-from inventory.models import Thing
+from inventory.models import Thing, Upload
 
 class ThingFormEdit(ModelForm):
 	class Meta:
 		model = Thing
 		fields = ('name', 'description','active',)
+
+class ThingUploadForm(ModelForm):
+	class Meta:
+		model = Upload
+		fields = ('image',)
 
 class ThingFormCreate(ModelForm):
 	class Meta:
