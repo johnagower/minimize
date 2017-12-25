@@ -1,0 +1,27 @@
+{
+  "name": "minimize",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johnagower/minimize.git"
+  },
+  "author": "John Gower",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/johnagower/minimize/issues"
+  },
+  "homepage": "https://github.com/johnagower/minimize#readme",
+  "devDependencies": {
+    "autoprefixer": "^7.2.3",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-postcss": "^7.0.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0"
+  }
+}

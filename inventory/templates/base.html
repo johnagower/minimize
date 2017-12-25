@@ -9,6 +9,7 @@
 	</title>
 	<meta name="description" content="{% block description %}Minimize{% endblock description %}">
 	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+	<link rel="js" href="{% static 'js/all.js' %}">
 	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 	{% block header %}{% endblock header %}
 </head>
@@ -28,6 +29,9 @@
 				</li>
 				<li class="nav-menu-item">
 					<a href="{% url 'auth_logout' %}">Logout</a>
+				</li>
+				<li class="nav-menu-item">
+					<a href="{% url 'edit_user' %}">Update settings</a>
 				</li>
 				<li class="nav-menu-item">
 					<a href="{% url 'password_change' %}">Change password</a>
