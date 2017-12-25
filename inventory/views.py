@@ -3,6 +3,7 @@ from django.template.defaultfilters import slugify
 from django.template.loader import get_template
 from django.template import Context
 from django.core.mail import EmailMessage, mail_admins
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from inventory.forms import (
@@ -60,6 +61,7 @@ def edit_thing(request, slug):
 		form = form_class(data=request.POST, instance=thing)
 		if form.is_valid():
 			form.save()
+			messages.success(request, 'Details updated.')
 			return redirect('thing_detail', slug=thing.slug)
 	else:
 		form = form_class(instance=thing)
