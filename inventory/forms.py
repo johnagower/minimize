@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.auth.models import User
 from django.forms import ModelForm
 from inventory.models import Thing, Upload
 
@@ -30,3 +31,8 @@ class ContactForm(forms.Form):
 		self.fields['contact_name'].label = "Your name:"
 		self.fields['contact_email'].label = "Your email:"
 		self.fields['content'].label = "What do you want to say?"
+
+class EditUserForm(ModelForm):
+	class Meta:
+		model = User
+		fields = ('email',)

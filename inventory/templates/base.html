@@ -31,6 +31,9 @@
 					<a href="{% url 'auth_logout' %}">Logout</a>
 				</li>
 				<li class="nav-menu-item">
+					<a href="{% url 'edit_user' %}">Update settings</a>
+				</li>
+				<li class="nav-menu-item">
 					<a href="{% url 'password_change' %}">Change password</a>
 				</li>
 				{% else %}

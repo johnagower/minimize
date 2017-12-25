@@ -79,6 +79,7 @@ urlpatterns = [
     	views.create_thing,
     	name='registration_create_thing'),
     url(r'^accounts/', include('registration.backends.simple.urls')),
+    url(r'^accounts/settings/$', views.edit_user, name='edit_user'),
     
     #password reset
     url(r'^accounts/password/reset/$', password_reset,

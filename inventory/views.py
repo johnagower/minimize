@@ -10,7 +10,8 @@ from inventory.forms import (
 	ThingFormEdit, 
 	ThingFormCreate, 
 	ContactForm, 
-	ThingUploadForm
+	ThingUploadForm,
+	EditUserForm
 	)
 from inventory.models import Thing, BlogArticle, Upload
 
@@ -187,4 +188,23 @@ def contact(request):
 
 	return render(request, 'contact.html', {
 		'form': form_class
+	})
+
+@login_required
+def edit_user(request):
+	user = request.user
+	form_class = EditUserForm
+
+	if request.method == 'POST':
+		form = form_class(data=request.POST, instance=user)
+		if form.is_valid():
+			form.save()
+			messages.success(request, 'User settings updated.')
+			return redirect('home')
+
+	else:
+		form = form_class(instance=user)
+
+	return render(request, 'account_settings.html', {
+		'form': form,
 	})
