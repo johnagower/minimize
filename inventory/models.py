@@ -71,3 +71,18 @@ class Upload(Timestamp):
 			if i_width > 1000:
 				image.thumbnail(max_size, Image.ANTIALIAS)
 				image.save(self.image.path)
+
+class Questions(models.Model):
+	ANSWER_OPTIONS = (
+		('open', 'open'),
+		('radio', 'radio'),
+		('checkbox', 'checkbox'),
+		('number', 'number'),
+		('truefalse', 'truefalse'),
+	)
+	question = models.CharField(max_length=255, blank=False, null=False)
+	question_desc = models.CharField(max_length=255, blank=True, null=True)
+	answer_type = models.CharField (max_length=255,
+		choices=ANSWER_OPTIONS)
+	class Meta:
+		verbose_name_plural = "Questions"

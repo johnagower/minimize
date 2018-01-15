@@ -18,6 +18,7 @@ from inventory.models import Thing, BlogArticle, Upload
 # Create your views here.
 def index(request):
 	return render (request, 'index.html',)
+	new_thing = request.session.get("new_thing")
 
 def blog_article(request, slug):
 	# grab article
@@ -134,6 +135,7 @@ def create_thing(request):
 			thing.user = request.user
 			thing.slug = slugify(thing.name)
 			thing.save()
+			request.session["new_thing"] = thing.name
 			return redirect('home')
 			mail_admins("New thing added", "Someone added a new thing")
 	else:
