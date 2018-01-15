@@ -1,5 +1,12 @@
 from django.contrib import admin
-from inventory.models import Thing, ThingTag, BlogArticle, Upload, Questions
+from inventory.models import (
+	Thing, 
+	ThingTag, 
+	BlogArticle, 
+	Upload, 
+	Questions, 
+	QuestionOptions,
+)
 
 class ThingAdmin(admin.ModelAdmin):
 	model = Thing
@@ -23,9 +30,13 @@ class QuestionsAdmin(admin.ModelAdmin):
 	model = Questions
 	list_display = ('question', 'question_desc', 'answer_type',)
 
+class QuestionOptionsAdmin(admin.ModelAdmin):
+	model = QuestionOptions
+	list_display = ('question_id', 'option',)
 
 admin.site.register(Thing, ThingAdmin)
 admin.site.register(ThingTag, ThingTagAdmin)
 admin.site.register(BlogArticle, BlogArticleAdmin)
 admin.site.register(Upload, UploadAdmin)
 admin.site.register(Questions, QuestionsAdmin)
+admin.site.register(QuestionOptions, QuestionOptionsAdmin)
