@@ -5,20 +5,9 @@
 
 {% block content %}
 	<h1>Take ownership of your stuff</h1>
-	<div class="homepage-subtitle">
-		{% if user.is_authenticated %}
-			<p>{{ new_thing }}</p>
-			<p>
-				<a href="{% url 'registration_create_thing' %}">
-					Add something
-				</a>
-			</p>
-		{% else %}
-			<p>
-				<a href="{% url 'registration_register' %}">
-					Sign up to add your stuff
-				</a>
-			</p>
-		{% endif %}
-	</div>
+		<form role="form" action="" method="post">
+			{% csrf_token %}
+			{{ form.as_p }}
+			<input type="submit" value="Submit" />
+		</form>
 {% endblock content %}

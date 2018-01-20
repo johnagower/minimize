@@ -14,39 +14,6 @@
 	{% block header %}{% endblock header %}
 </head>
 <body>
-	<header>
-		<nav>
-			<ul class="nav-menu">
-				<li class="nav-menu-item">
-					<a href="{% url 'home' %}">Home</a>
-				</li>
-				<li class="nav-menu-item">
-					<a href="{% url 'articles' %}">Articles</a>
-				</li>
-				{% if user.is_authenticated %}
-				<li class="nav-menu-item">
-					<a href="{% url 'browse' %}">My Stuff</a>
-				</li>
-				<li class="nav-menu-item">
-					<a href="{% url 'auth_logout' %}">Logout</a>
-				</li>
-				<li class="nav-menu-item">
-					<a href="{% url 'edit_user' %}">Update settings</a>
-				</li>
-				<li class="nav-menu-item">
-					<a href="{% url 'password_change' %}">Change password</a>
-				</li>
-				{% else %}
-				<li class="nav-menu-item">
-					<a href="{% url 'auth_login' %}">Login</a>
-				</li>
-				<li class="nav-menu-item">
-					<a href="{% url 'registration_register' %}">Register</a>
-				</li>
-				{% endif %}
-			</ul>
-		</nav>
-	</header>
 	{% if messages %}
 	<ul class="messages">
 		{% for message in messages %}
@@ -58,9 +25,7 @@
 	{% block content %}{% endblock content %}
 	{% block footer %}{% endblock footer %}
 	<footer>
-		<ul>
-			<li><a href="{% url 'about' %}">About</a></li>
-		</ul>
+
 	</footer>
 </body>
 </html>

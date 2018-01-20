@@ -11,14 +11,26 @@ from inventory.forms import (
 	ThingFormCreate, 
 	ContactForm, 
 	ThingUploadForm,
-	EditUserForm
+	EditUserForm,
+	ItemForm
 	)
 from inventory.models import Thing, BlogArticle, Upload
 
 # Create your views here.
-def index(request):
-	return render (request, 'index.html',)
-	new_thing = request.session.get("new_thing")
+def index(request):	
+	form_class = ItemForm
+	if request.method == 'POST':
+		form = form_class(request.POST)
+		if form.is_valid():
+			item = form.save(commit=False)
+			item.user = request.user
+			item.save()
+			return redirect('home')
+	else:
+		form = form_class()
+	return render(request, 'index.html', {
+		'form': form,
+	})
 
 def blog_article(request, slug):
 	# grab article

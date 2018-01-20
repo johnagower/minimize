@@ -85,7 +85,7 @@ class Questions(models.Model):
 	)
 	question = models.CharField(max_length=255, blank=False, null=False)
 	question_desc = models.CharField(max_length=255, blank=True, null=True)
-	answer_type = models.CharField (max_length=255,
+	answer_type = models.CharField(max_length=255,
 		choices=ANSWER_OPTIONS)
 	class Meta:
 		verbose_name_plural = "Questions"
@@ -96,8 +96,41 @@ class QuestionOptions(models.Model):
 	class Meta:
 		verbose_name_plural = "QuestionOptions"
 
-class Item(models.Model):
+class Item(Timestamp):
+	def __unicode__(self):
+		return self.name
 	name = models.CharField(max_length=255, blank=False, null=False)
+	user = models.ForeignKey(User, blank=True, null=True)
+
+	LASTUSED_OPTIONS = (
+		('7', 'Past week'),
+		('31', 'Past month'),
+		('365', 'Past year'),
+		('99999', 'More than a year ago'),
+	)
+	last_used = models.CharField(max_length=255, choices=LASTUSED_OPTIONS)
+	REPLACEMENTCOST_OPTIONS = (
+		('10', 'Less than $10'),
+		('50', 'Less than $50'),
+		('100', 'Less than $100'),
+		('99999', 'More than $100'),
+		('priceless', 'Priceless'),
+	)
+	replacement_cost = models.CharField(max_length=255, choices=REPLACEMENTCOST_OPTIONS)
+	JOY_OPTIONS = (
+		('none', 'None'),
+		('some', 'Some'),
+		('a lot', 'A lot'),
+	)
+	joy = models.CharField(max_length=255, choices=JOY_OPTIONS)
+	DECISION_OPTIONS = (
+		('keep', 'keep'),
+		('toss', 'toss'),
+		('donate', 'donate'),
+		('sell', 'sell'),
+	)
+	decision = models.CharField(max_length=255, choices=DECISION_OPTIONS)
+
 
 class QuestionResponse(models.Model):
 	RESULTS = (
