@@ -71,3 +71,44 @@ class Upload(Timestamp):
 			if i_width > 1000:
 				image.thumbnail(max_size, Image.ANTIALIAS)
 				image.save(self.image.path)
+
+class Questions(models.Model):
+	def __unicode__(self):
+		return self.question
+
+	ANSWER_OPTIONS = (
+		('open', 'open'),
+		('radio', 'radio'),
+		('checkbox', 'checkbox'),
+		('number', 'number'),
+		('truefalse', 'truefalse'),
+	)
+	question = models.CharField(max_length=255, blank=False, null=False)
+	question_desc = models.CharField(max_length=255, blank=True, null=True)
+	answer_type = models.CharField (max_length=255,
+		choices=ANSWER_OPTIONS)
+	class Meta:
+		verbose_name_plural = "Questions"
+
+class QuestionOptions(models.Model):
+	question_id = models.ForeignKey(Questions, related_name="options")
+	option = models.CharField (max_length=255, blank=False, null=False)
+	class Meta:
+		verbose_name_plural = "QuestionOptions"
+
+class Item(models.Model):
+	name = models.CharField(max_length=255, blank=False, null=False)
+
+class QuestionResponse(models.Model):
+	RESULTS = (
+		('keep', 'keep'),
+		('let go', 'let go'),
+		('more', 'more'),
+	)
+	item = models.ForeignKey(Item, related_name="responses")
+	question = models.ForeignKey(Questions, related_name="responses")
+	response = models.CharField (max_length=255, blank=False, null=False)
+	result = models.CharField (max_length=255,
+		choices=RESULTS)
+
+
