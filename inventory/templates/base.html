@@ -4,16 +4,17 @@
 <head>
 	<title>
 		{% block title %}
-			Minimize
+			fewerthings.me
 		{% endblock title %}
 	</title>
-	<meta name="description" content="{% block description %}Minimize{% endblock description %}">
+	<meta name="description" content="{% block description %}Declutter your life by prioritizing what you own{% endblock description %}">
 	<link rel="stylesheet" href="{% static 'css/style.css' %}">
 	<link rel="js" href="{% static 'js/all.js' %}">
-	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
 	{% block header %}{% endblock header %}
 </head>
 <body>
+	<div class="site-name"><a href="\">fewerthings.me</a></div>
 	{% if messages %}
 	<ul class="messages">
 		{% for message in messages %}

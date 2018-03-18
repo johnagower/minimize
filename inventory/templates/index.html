@@ -4,10 +4,8 @@
 {% endblock title %}
 
 {% block content %}
-	<h1>Take ownership of your stuff</h1>
-		<form role="form" action="" method="post">
-			{% csrf_token %}
-			{{ form.as_p }}
-			<input type="submit" value="Submit" />
-		</form>
+	<h1>Rethink what you own</h1>
+		<div class=article-list>
+			<p><a href="/how/declutter-by-prioritizing-not-organizing/">How to Declutter Your Home by Prioritizing, Not Organizing</a></p>
+		</div>
 {% endblock content %}

@@ -124,10 +124,12 @@ class Item(Timestamp):
 	)
 	joy = models.CharField(max_length=255, choices=JOY_OPTIONS)
 	DECISION_OPTIONS = (
-		('keep', 'keep'),
-		('toss', 'toss'),
-		('donate', 'donate'),
-		('sell', 'sell'),
+		('keep', 'Keep'),
+		('toss', 'Toss'),
+		('donate', 'Donate'),
+		('sell', 'Sell'),
+		('digitize', 'Digitize'),
+		('other', 'Something else'),
 	)
 	decision = models.CharField(max_length=255, choices=DECISION_OPTIONS)
 
