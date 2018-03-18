@@ -4,49 +4,17 @@
 <head>
 	<title>
 		{% block title %}
-			Minimize
+			fewerthings.me
 		{% endblock title %}
 	</title>
-	<meta name="description" content="{% block description %}Minimize{% endblock description %}">
+	<meta name="description" content="{% block description %}Declutter your life by prioritizing what you own{% endblock description %}">
 	<link rel="stylesheet" href="{% static 'css/style.css' %}">
 	<link rel="js" href="{% static 'js/all.js' %}">
-	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
 	{% block header %}{% endblock header %}
 </head>
 <body>
-	<header>
-		<nav>
-			<ul class="nav-menu">
-				<li class="nav-menu-item">
-					<a href="{% url 'home' %}">Home</a>
-				</li>
-				<li class="nav-menu-item">
-					<a href="{% url 'articles' %}">Articles</a>
-				</li>
-				{% if user.is_authenticated %}
-				<li class="nav-menu-item">
-					<a href="{% url 'browse' %}">My Stuff</a>
-				</li>
-				<li class="nav-menu-item">
-					<a href="{% url 'auth_logout' %}">Logout</a>
-				</li>
-				<li class="nav-menu-item">
-					<a href="{% url 'edit_user' %}">Update settings</a>
-				</li>
-				<li class="nav-menu-item">
-					<a href="{% url 'password_change' %}">Change password</a>
-				</li>
-				{% else %}
-				<li class="nav-menu-item">
-					<a href="{% url 'auth_login' %}">Login</a>
-				</li>
-				<li class="nav-menu-item">
-					<a href="{% url 'registration_register' %}">Register</a>
-				</li>
-				{% endif %}
-			</ul>
-		</nav>
-	</header>
+	<div class="site-name"><a href="\">fewerthings.me</a></div>
 	{% if messages %}
 	<ul class="messages">
 		{% for message in messages %}
@@ -58,9 +26,7 @@
 	{% block content %}{% endblock content %}
 	{% block footer %}{% endblock footer %}
 	<footer>
-		<ul>
-			<li><a href="{% url 'about' %}">About</a></li>
-		</ul>
+
 	</footer>
 </body>
 </html>

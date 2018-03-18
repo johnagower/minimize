@@ -41,6 +41,13 @@ sitemaps = {
 
 urlpatterns = [
     url(r'^$', views.index, name='home'),
+
+    # how
+    url(r'^how/$', RedirectView.as_view(
+        pattern_name='home', permanent=True)),
+    url(r'^how/declutter-by-prioritizing-not-organizing/$', 
+        TemplateView.as_view(template_name='articles/declutter-by-prioritizing-not-organizing.html')),
+
     url(r'^about/$',
     	TemplateView.as_view(template_name='about.html'),
     	name='about'),

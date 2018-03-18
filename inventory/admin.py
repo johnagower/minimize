@@ -6,6 +6,7 @@ from inventory.models import (
 	Upload, 
 	Questions, 
 	QuestionOptions,
+	Item
 )
 
 class ThingAdmin(admin.ModelAdmin):
@@ -34,9 +35,21 @@ class QuestionOptionsAdmin(admin.ModelAdmin):
 	model = QuestionOptions
 	list_display = ('question_id', 'option',)
 
+class ItemAdmin(admin.ModelAdmin):
+	model = Item
+	list_display = (
+		'name', 
+		'user', 
+		'last_used', 
+		'replacement_cost', 
+		'joy', 
+		'decision'
+	)
+
 admin.site.register(Thing, ThingAdmin)
 admin.site.register(ThingTag, ThingTagAdmin)
 admin.site.register(BlogArticle, BlogArticleAdmin)
 admin.site.register(Upload, UploadAdmin)
 admin.site.register(Questions, QuestionsAdmin)
 admin.site.register(QuestionOptions, QuestionOptionsAdmin)
+admin.site.register(Item, ItemAdmin)
